@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .student-card{
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #4f4f4f;
+            border: 1px solid #ddd;
+        }
+
+        .search-bar{
+            height: 30px;
+            width: 200px;
+            margin-left: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1> Employees </h1>
+
+    <input type="text" id="search" placeholder="search" class="search-bar" onkeyup="loadsearchResult()"/>
+
+    <div id="students-container"></div>
+
+    <script>
+        const Students = ["Komal","Pranali","Saurabh","Sakshi","Priyansh","Sonali","Dipali","Atharv","Akshada","Hemangi","Tejas","Chaitali","Vaishali","Shraddha","Vaibhav","Harshita","Mayur"]
+
+        const StudentsContainer = document.getElementById('students-container');
+
+        function renderStudents(studentList){
+            StudentsContainer.innerHTML = '';
+
+            studentList.forEach((stud)=>{
+            StudentsContainer.innerHTML += `<div class='student-card'>${stud}</div>` 
+            })
+        }
+
+        renderStudents(Students);
+
+        function loadsearchResult(){
+            const inputElement = document.getElementById('search');
+            const searchText = inputElement.value.toLowerCase();  
+        
+            const filteredStudents = Students.filter((stud)=>{
+                if(stud.toLowerCase().includes(searchText)){
+                return true; 
+                }
+            })
+            renderStudents(filteredStudents);
+        }    
+    </script>
+</body>
+</html>
